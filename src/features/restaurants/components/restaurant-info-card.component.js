@@ -10,7 +10,6 @@ import open from "../../../../assets/open";
 import {
   RestaurantCard,
   RestaurantCardCover,
-  Icon,
   Address,
   Info,
   Rating,
@@ -29,6 +28,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 4,
     isCloseTemporarily = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -40,13 +40,20 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Text variant="label">{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map(() => (
-              <SvgXml xml={star} width={20} height={20} />
+            {ratingArray.map((_, i) => (
+              <SvgXml
+                key={`star-${placeId}-${i}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </Rating>
           <SectionEnd>
             {isCloseTemporarily && (
-              <Text variant="error">CLOSED TEMPORARILY</Text>
+              <Text variant="error" size="medium">
+                CLOSED TEMPORARILY
+              </Text>
             )}
             <Spacer position="left" size="medium">
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
