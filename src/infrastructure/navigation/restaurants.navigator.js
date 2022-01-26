@@ -19,10 +19,12 @@ export const RestaurantsNavigator = () => {
       }}
     >
       <RestaurantStack.Screen
+        headerMode="none"
         name="Restaurants"
         component={RestaurantsScreen}
       />
       <RestaurantStack.Screen
+        headerMode="none"
         name="RestaurantDetail"
         component={RestaurantDetailScreen}
       />
