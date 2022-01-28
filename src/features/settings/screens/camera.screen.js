@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { Camera } from "expo-camera";
+import { Ionicons } from "@expo/vector-icons";
 import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Text } from "../../../components/typography/text.component";
 
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
@@ -44,14 +45,27 @@ export const CameraScreen = ({ navigation }) => {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
   return (
     <ProfileCamera
       ref={(camera) => (cameraRef.current = camera)}
       type={Camera.Constants.Type.front}
     >
-      <TouchableOpacity onPress={snap}>
-        <InnerSnap />
-      </TouchableOpacity>
+      <Ionicons
+        style={styles.button}
+        onPress={snap}
+        name="camera-outline"
+        size={45}
+        color="white"
+      />
     </ProfileCamera>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    flex: 1,
+    alignSelf: "center",
+    marginTop: 470,
+  },
+});
